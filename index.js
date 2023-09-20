@@ -9,12 +9,11 @@ const app = express()
 import connection from './DB/connection.js'
 import { globalError } from './src/services/asyncHandler.js'
 import cors  from "cors"
-app.use(bodyParser.json())
-// var corsOption = {
-//     origin: "*",
-//     optionsSuccessStatus: 200
-// }
-app.use(cors({ origin: 'http://localhost:4200' }))
+var corsOption = {
+    origin: "*",
+    optionsSuccessStatus: 200
+}
+app.use(cors("*"))
 const port = process.env.PORT
 app.use(express.json())
 
