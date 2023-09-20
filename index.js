@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 //     origin: "*",
 //     optionsSuccessStatus: 200
 // }
-app.use(cors("*"))
+app.use(cors({ origin: 'http://localhost:4200' }))
 const port = process.env.PORT
 app.use(express.json())
 
