@@ -16,24 +16,8 @@ export const signUp = asyncHandler(async (req, res, next) => {
 
     } else {
         let addUser = new userModel({ userName, email, password});
-        let token = jwt.sign({ id: addUser._id, isLoggedIn: true }, process.env.emailToken, { expiresIn: '1h' })
-        let refreshToken = jwt.sign({ id: addUser._id, isLoggedIn: true }, process.env.emailToken, { expiresIn: 60 * 60 * 24 })
-
-        let link = `${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}`
-        let refreshLink = `${req.protocol}://${req.headers.host}/auth/refreshToken/${refreshToken}`
-
-        let message = `please verify your email <a href="${link}" > here </a>
-                            <br/>
-                            to resend please click <a href="${refreshLink}" > here </a>
-                            `
-        let emailRes = await sendEmail(email, "confirm to register", message);
-        if (emailRes.accepted.length) {
             let savedUser = await addUser.save()
             res.status(201).json({ message: "added successfully", savedUser })
-        } else {
-        res.status(404).json({message:"invalid email"})
-
-        }
     }
 
 })
