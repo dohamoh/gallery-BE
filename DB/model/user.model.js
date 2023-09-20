@@ -26,7 +26,7 @@ const userSchema = new Schema({
 
     confirmEmail: {
         type: Boolean,
-        default: 'false',
+        default: 'true',
     },
     blocked: {
         type: Boolean,

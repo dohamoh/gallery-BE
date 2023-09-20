@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     res.status(200).json({ message: 'Auth Module' })
 })
 
-router.post("/signUp",validation(signUpValidation), registerControl.signUp)
+router.post("/signUp" , registerControl.signUp)
 router.get("/confirmEmail/:token", registerControl.confirmEmail)
 router.get("/refreshToken/:token", registerControl.resendConfirmEmail)
 router.post("/logIn",validation(logInValidation), registerControl.logIn)
